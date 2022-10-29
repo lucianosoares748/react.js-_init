@@ -1,4 +1,4 @@
-import { PostCard } from "./PostCard";
+import { PostCard } from "../PostCard";
 
 export const Posts = ({ posts }) => (
   <div className="posts">

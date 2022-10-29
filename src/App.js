@@ -1,7 +1,7 @@
 import { Component } from "react";
 
 import "./App.css";
-
+import { Posts } from "./components/Posts";
 import { loadPosts } from "./utils/load-posts";
 
 class App extends Component {
@@ -10,7 +10,7 @@ class App extends Component {
   };
 
   async componentDidMount() {
-    await loadPosts();
+    await this.loadPosts();
   }
 
   loadPosts = async () => {
