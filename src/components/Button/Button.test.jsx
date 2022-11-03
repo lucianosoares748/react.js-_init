@@ -17,4 +17,13 @@ describe("<Button />", () => {
 
     expect(fn).toHaveBeenCalled();
   });
+
+  it("should be disabled when disabled is true", () => {
+    render(<Button text="Load More" disabled={false} />);
+
+    const button = screen.getByRole("button", { name: /load more/i });
+    fireEvent.click(button);
+
+    expect(button).toBeDisabled();
+  });
 });
