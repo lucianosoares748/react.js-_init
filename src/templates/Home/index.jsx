@@ -1,21 +1,24 @@
-import { useEffect, useState, useCallback } from "react";
-import "./style.css";
+/* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable no-unused-vars */
+import P from 'prop-types';
+import { useEffect, useState, useCallback } from 'react';
+import './style.css';
 
-import { Posts } from "../../components/Posts";
-import { loadPosts } from "../../utils/load-posts";
-import { Button } from "../../components/Button/index";
-import { TextInput } from "../../components/input";
+import { Posts } from '../../components/Posts';
+import { loadPosts } from '../../utils/load-posts';
+import { Button } from '../../components/Button/index';
+import { TextInput } from '../../components/input';
 
 export const Home = () => {
   const [posts, setPosts] = useState([]);
   const [allPosts, setAllPosts] = useState([]);
   const [page, setPage] = useState(0);
   const [postPerPage, postsPerPage] = useState(8);
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState('');
 
   const noMorePosts = page + postsPerPage >= allPosts.length;
 
-  const filteredPosts = !!searchValue
+  const filteredPosts = searchValue
     ? allPosts.filter((post) => {
         return post.title.toLowerCase().includes(searchValue.toLowerCase());
       })
@@ -28,7 +31,7 @@ export const Home = () => {
   }, []);
 
   useEffect(() => {
-    console.log("oi");
+    console.log('oi');
     handleLoadPosts(0, postsPerPage);
   }, [handleLoadPosts, postsPerPage]);
 
@@ -56,13 +59,7 @@ export const Home = () => {
       {filteredPosts.length > 0 && <Posts posts={filteredPosts} />}
       {filteredPosts.length === 0 && <h1>Não existem Posts</h1>}
       <div className="button-container">
-        {!searchValue && (
-          <Button
-            disabled={noMorePosts}
-            text="Load more posts"
-            onClick={loadMorePosts}
-          />
-        )}
+        {!searchValue && <Button disabled={noMorePosts} text="Load more posts" onClick={loadMorePosts} />}
       </div>
     </section>
   );
